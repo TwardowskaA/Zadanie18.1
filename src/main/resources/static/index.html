@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<style type="text/css">
+    .form-group {
+        margin-left: 10px;
+    }
+
+    .form-control {
+        margin-left: 10px;
+    }
+
+    .submit {
+        margin-left: 10px;
+    }
+
+    .header {
+        background: gainsboro;
+        width: 100%;
+        height: 50px;
+    }
+</style>
+<div class="header">
+    <h3>Aplikacja prezentująca liste produktów</h3> <br>
+</div>
+<br>
+<div class="list-group">
+    <a href="http://localhost:8080/lista" class="list-group-item list-group-item-action">Przejdź do pełnej listy
+        produktów</a>
+    <a href="http://localhost:8080/lista?kategoria=spozywcze" class="list-group-item list-group-item-action">Przejdź do
+        listy produktów spożywczych</a>
+    <a href="http://localhost:8080/lista?kategoria=domowe" class="list-group-item list-group-item-action">Przejdź do
+        listy produktów gospodarstwa domowego</a>
+    <a href="http://localhost:8080/lista?kategoria=inne" class="list-group-item list-group-item-action">Przejdź do listy
+        innych produktów</a>
+</div>
+<br>
+<br>
+<div class="header">
+    <h3>Dodaj produkt</h3><br>
+</div>
+<br>
+<form method="post" action="/add">
+    <form>
+        <div class="form-group">
+            <label>Nazwa</label>
+            <input type="text" class="form-control" name="nazwa"
+                   placeholder="Podaj nazwę produktu">
+        </div>
+        <div class="form-group">
+            <label>Wybierz kategorię produktu:</label>
+            <select class="form-control" name="kategoria">
+                <option>ART_SPOZYWCZE</option>
+                <option>ART_GOSP_DOMOWEGO</option>
+                <option>INNE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Cena</label>
+            <input type="text" class="form-control" name="cena" placeholder="Podaj cenę produktu">
+        </div>
+        <div class="submit">
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+        </div>
+    </form>
+</form>
+</body>
+</html>

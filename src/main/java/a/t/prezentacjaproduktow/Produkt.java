@@ -1,7 +1,5 @@
 package a.t.prezentacjaproduktow;
 
-import java.util.List;
-
 public class Produkt {
     private String nazwa;
     private Kategoria kategoria;
@@ -11,8 +9,6 @@ public class Produkt {
         this.nazwa = nazwa;
         this.kategoria = kategoria;
         this.cena = cena;
-    }
-    public Produkt(){
     }
 
     public String getNazwa() {
@@ -31,7 +27,7 @@ public class Produkt {
         this.kategoria = kategoria;
     }
 
-    public double getCena(List<Produkt> lista) {
+    public double getCena() {
         return cena;
     }
 

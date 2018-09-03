@@ -9,8 +9,7 @@ import java.util.List;
 @Repository
 public class ProduktRepository {
 
-    Produkt produkt = new Produkt();
-
+    private Kategoria kategoria;
     private List<Produkt> products = new ArrayList<>();
 
     public ProduktRepository() {
@@ -21,7 +20,7 @@ public class ProduktRepository {
         products.add(new Produkt("Szklanka", Kategoria.ART_GOSP_DOMOWEGO, 2.50));
         products.add(new Produkt("Koszyk", Kategoria.ART_GOSP_DOMOWEGO, 14.00));
         products.add(new Produkt("Miotła", Kategoria.ART_GOSP_DOMOWEGO, 31.90));
-        products.add(new Produkt("Szczotka", Kategoria.ART_GOSP_DOMOWEGO,2.79));
+        products.add(new Produkt("Szczotka", Kategoria.ART_GOSP_DOMOWEGO, 2.79));
         products.add(new Produkt("Wentylator", Kategoria.INNE, 237.00));
         products.add(new Produkt("Odkurzacz", Kategoria.INNE, 498.00));
         products.add(new Produkt("Klimatyzator", Kategoria.INNE, 178.99));
@@ -33,11 +32,13 @@ public class ProduktRepository {
         return products;
     }
 
-    public double getPrice(){
-       return produkt.getCena(products);
-    }
 
-    public void addProdukt(Produkt produkt){
+    public void addProdukt(Produkt produkt) {
         products.add(produkt);
     }
+
+    public Kategoria getKategoria(){
+        return kategoria;
+    }
+
 }

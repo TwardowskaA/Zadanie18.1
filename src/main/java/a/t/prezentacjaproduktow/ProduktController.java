@@ -1,8 +1,7 @@
 package a.t.prezentacjaproduktow;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,30 +19,59 @@ public class ProduktController {
     @ResponseBody
     public String allProducts(){
         String result = "";
-        double price = 0;
-        List<Produkt> produktList = produktRepository.getProducts();
-
-        for (int i = 0; i < produktList.size(); i++) {
-            price = price + produktRepository.getPrice();
-        }
+        double cena = 0;
+        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
 
         for (Produkt produkt : produktList) {
             result+= produkt.toString() + "<br>";
         }
-        return result + "<br>" + price;
+
+        for (Produkt produkt : produktList) {
+            cena = cena + produkt.getCena();
+        }
+
+        return result + "<br>" + "Wartość listy: " + cena;
     }
+
     @GetMapping("/spozywcze")
     @ResponseBody
-    public String spozywcze(){
+    public String spozywcze(@RequestParam(value="ART_SPOZYWCZE") Kategoria kategoria){
         String result = "";
-        List<Produkt> produktList = produktRepository.getProducts();
 
-        List<Produkt> spozywcze = new ArrayList<>();
-        while(produktList.contains(Kategoria.ART_SPOZYWCZE)){
-            for (Produkt produkt : spozywcze) {
-                result+= produkt.toString() + "<br>";
-            }
+        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
+       for(Produkt produkt1 : produktList){
+           if(produkt1.getKategoria().equals(produktRepository.getProducts()))
+               result += produkt1 + "<br>";
+
+       }
+        return result;
+    }
+
+    @GetMapping("/domowe")
+    @ResponseBody
+    public String domowe(@RequestParam(value="ART_GOSP_DOMOWEGO") Kategoria kategoria){
+        String result = "";
+        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
+        for(Produkt produkt2 : produktList){
+            if(produkt2.getKategoria().equals(kategoria))
+                result += produkt2 + "<br>";
         }
         return result;
     }
+
+
+
+    @GetMapping("/inne")
+    @ResponseBody
+    public String inne(@RequestParam(value="INNE") Kategoria kategoria){
+        String result = "";
+        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
+        for(Produkt produkt3 : produktList){
+            if(produkt3.getKategoria().equals(kategoria))
+                result += produkt3 + "<br>";
+        }
+        return result;
+    }
+
+
 }

@@ -35,21 +35,21 @@ public class ProduktController {
 
     @GetMapping("/spozywcze")
     @ResponseBody
-    public String spozywcze(@RequestParam(value="ART_SPOZYWCZE") Kategoria kategoria){
+    public String spozywcze(){
         String result = "";
 
         List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
-       for(Produkt produkt1 : produktList){
-           if(produkt1.getKategoria().equals(produktRepository.getProducts()))
-               result += produkt1 + "<br>";
 
+       for(Produkt produkt1 : produktList){
+           if(produkt1.getKategoria().equals(produktRepository.getKategoria()))
+               result += produkt1 + "<br>";
        }
         return result;
     }
 
     @GetMapping("/domowe")
     @ResponseBody
-    public String domowe(@RequestParam(value="ART_GOSP_DOMOWEGO") Kategoria kategoria){
+    public String domowe(@RequestParam(value="domowe") Kategoria kategoria){
         String result = "";
         List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
         for(Produkt produkt2 : produktList){
@@ -63,7 +63,7 @@ public class ProduktController {
 
     @GetMapping("/inne")
     @ResponseBody
-    public String inne(@RequestParam(value="INNE") Kategoria kategoria){
+    public String inne(@RequestParam(value="inne") Kategoria kategoria){
         String result = "";
         List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
         for(Produkt produkt3 : produktList){

@@ -17,7 +17,7 @@ public class ProduktController {
 
     @GetMapping("/lista")
     @ResponseBody
-    public String allProducts(){
+    public String allProducts(@RequestParam(value = "kategoria", required =false ) Kategoria kategoria){
         String result = "";
         double cena = 0;
         List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
@@ -32,46 +32,5 @@ public class ProduktController {
 
         return result + "<br>" + "Wartość listy: " + cena;
     }
-
-    @GetMapping("/spozywcze")
-    @ResponseBody
-    public String spozywcze(){
-        String result = "";
-
-        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
-
-       for(Produkt produkt1 : produktList){
-           if(produkt1.getKategoria().equals(produktRepository.getKategoria()))
-               result += produkt1 + "<br>";
-       }
-        return result;
-    }
-
-    @GetMapping("/domowe")
-    @ResponseBody
-    public String domowe(@RequestParam(value="domowe") Kategoria kategoria){
-        String result = "";
-        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
-        for(Produkt produkt2 : produktList){
-            if(produkt2.getKategoria().equals(kategoria))
-                result += produkt2 + "<br>";
-        }
-        return result;
-    }
-
-
-
-    @GetMapping("/inne")
-    @ResponseBody
-    public String inne(@RequestParam(value="inne") Kategoria kategoria){
-        String result = "";
-        List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
-        for(Produkt produkt3 : produktList){
-            if(produkt3.getKategoria().equals(kategoria))
-                result += produkt3 + "<br>";
-        }
-        return result;
-    }
-
 
 }

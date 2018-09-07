@@ -37,8 +37,4 @@ public class ProduktRepository {
         products.add(produkt);
     }
 
-    public Kategoria getKategoria(){
-        return kategoria;
-    }
-
 }

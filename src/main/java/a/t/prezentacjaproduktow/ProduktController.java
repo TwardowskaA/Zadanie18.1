@@ -17,17 +17,15 @@ public class ProduktController {
 
     @GetMapping("/lista")
     @ResponseBody
-    public String allProducts(@RequestParam(value = "kategoria", required =false ) Kategoria kategoria){
+    public String allProducts(@RequestParam(value = "kategoria", required = false) Kategoria kategoria) {
         String result = "";
         double cena = 0;
         List<Produkt> produktList = new ArrayList<>(produktRepository.getProducts());
 
         for (Produkt produkt : produktList) {
-            result+= produkt.toString() + "<br>";
-        }
-
-        for (Produkt produkt : produktList) {
-            cena = cena + produkt.getCena();
+            if (kategoria == null || produkt.getKategoria() == kategoria)
+                result += produkt.toString() + "<br>";
+                cena += produkt.getCena();
         }
 
         return result + "<br>" + "Wartość listy: " + cena;
